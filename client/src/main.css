@@ -8,3 +8,11 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+#root {
+    height: 100%;
+    background-image: url("https://wallpaperaccess.com/full/2005304.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+  }
