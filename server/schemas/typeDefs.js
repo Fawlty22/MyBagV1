@@ -31,8 +31,18 @@ type User {
   type Query {
     user(email: String!): User
   }
+  type Mutation {
+    login(username: String!, password: String!): Auth
+
+    addUser(
+      username: String!
+      email: String!
+      password: String!
+    ): Auth
+  }
 `
 //mutations still need to be added here
 
 // export the typeDefs
 module.exports = typeDefs;
+
