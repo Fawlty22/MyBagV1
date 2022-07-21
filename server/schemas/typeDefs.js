@@ -23,10 +23,16 @@ type User {
     flightType: String
   }
 
+  type Auth {
+    token: ID
+    user: User
+  }
+
   type Query {
     user(email: String!): User
   }
-
-
 `
 //mutations still need to be added here
+
+// export the typeDefs
+module.exports = typeDefs;

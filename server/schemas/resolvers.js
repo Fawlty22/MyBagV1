@@ -3,10 +3,11 @@ const {  User, Disc } = require("../models");
 
 const resolvers = {
   Query: {
-   
-  },
-  Mutation: {
-    
+    user: async (parent, { email }, context) => {
+          return User.findOne({ email: email })
+            .select("-__v")
+            .populate("discs");
+      },
   }
 };
 
