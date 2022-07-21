@@ -10,9 +10,13 @@ html {
 }
 #root {
     height: 100%;
-    background-image: url("https://wallpaperaccess.com/full/2005304.jpg");
-    background-position: center;
+    background-color: antiquewhite;
+    /* background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: black;
+    background-color: black; */
+  }
+
+  .disc-card {
+    background-color: #7ECBCF;
   }

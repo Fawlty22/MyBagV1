@@ -9,7 +9,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { StoreProvider } from "./utils/GlobalContext";
 import Dashboard from "./pages/Dashboard";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "./components/Footer";
 import "./App.css";
 
 const httpLink = createHttpLink({
@@ -41,6 +41,7 @@ function App() {
           </Switch>
         </StoreProvider>
       </Router>
+      <Footer />
     </ApolloProvider>
   );
 }
