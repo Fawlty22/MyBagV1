@@ -31,6 +31,7 @@ type User {
   type Query {
     user(email: String!): User
   }
+  
   type Mutation {
     login(username: String!, password: String!): Auth
 
