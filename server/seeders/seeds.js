@@ -1,4 +1,5 @@
 const faker = require("faker");
+const bcrypt = require("bcrypt");
 
 const db = require("../config/connection");
 const { User } = require("../models");
@@ -12,8 +13,8 @@ db.once("open", async () => {
   for (let i = 0; i < 10; i += 1) {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
-    const password = 'password';
-
+    let password = faker.internet.password(8, true);
+    
     const discs = [
       {
         speed: "2",
