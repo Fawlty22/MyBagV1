@@ -59,6 +59,21 @@ const resolvers = {
         { new: true }
       );
       return userUpdate;
+    },
+    toggleInBag: async (parent, args, context) => {
+      const user = await User.findById(context.user._id)
+      let discs = user.discs
+      discs.forEach(disc => {
+        if(disc.name == args.name){
+          let value =disc.inBag
+          disc.inBag = !value;
+        }
+      })
+      const updatedUser = await User.findByIdAndUpdate(
+        {_id: context.user._id},
+        {$set: {discs: discs}},
+        { new: true})
+        return updatedUser;
     }
   }
 };

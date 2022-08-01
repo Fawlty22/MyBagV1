@@ -97,3 +97,30 @@ export const REMOVEDISC_MUTATION = gql`
     }
   }
 `;
+
+export const TOGGLEINBAG_MUTATION = gql`
+  mutation toggleInBag(
+    $name: String!
+  ) {
+    toggleInBag(
+      name: String
+    ) {
+      user {
+        _id
+        username
+        email
+        discs {
+          brand
+          name
+          speed
+          glide
+          turn
+          fade
+          inBag
+          flightPath
+          flightType
+        }
+      }
+    }
+  }
+`;

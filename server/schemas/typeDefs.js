@@ -54,6 +54,8 @@ type User {
     ): User
 
     removeDisc(name: String): User
+
+    toggleInBag(name: String): User
   }
 `
 //mutations still need to be added here
