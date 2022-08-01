@@ -40,6 +40,20 @@ type User {
       email: String!
       password: String!
     ): Auth
+
+    addDisc(
+    brand: String
+    name: String
+    speed: String
+    glide: String
+    turn: String
+    fade: String
+    inBag: Boolean  
+    flightPath: String
+    flightType: String
+    ): User
+
+    removeDisc(name: String): User
   }
 `
 //mutations still need to be added here

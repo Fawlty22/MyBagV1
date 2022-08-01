@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
-const discSchema = require("./Disc");
+const Disc = require("./Disc").schema;
 
 const userSchema = new Schema(
   {
@@ -21,7 +21,7 @@ const userSchema = new Schema(
       required: true,
       minlength: 5,
     },
-    discs: [discSchema],
+    discs: [Disc],
   },
   {
     toJSON: {
