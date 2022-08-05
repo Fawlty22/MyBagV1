@@ -1,41 +1,103 @@
-import React from 'react'
-import { useMutation } from "@apollo/client";
-import { Link, Redirect } from "react-router-dom";
-import { LOGIN_MUTATION } from "../graphql/mutations";
-import Auth from "../utils/auth";
-import { useStoreContext } from "../utils/GlobalContext";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
-export default function Login() {
-  const [formState, setFormState] = useState({ username: "", password: "" });
-  const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
+const theme = createTheme({
+    palette: {
+      type: "light",
+      primary: {
+        main: "#5EBEC4",
+        light: "#7ECBCF",
+      },
+      secondary: {
+        main: "#F92C85",
+      },
+      background: {
+        default: "#FDF5DF",
+        dark: "#C1C1C1",
+      },
+    },
+  });
 
-
-  const handleFormSubmit = async (event) => {
+export default function SignIn() {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    try {
-      const mutationResponse = await login({
-        variables: {
-          username: formState.username,
-          password: formState.password,
-        },
-      });
-      const { token, employee } = mutationResponse.data.login;
-      console.log(token, "line 20 login");
-      dispatch({
-        type: UPDATE_EMPLOYEE,
-        payload: { token: token, _id: employee._id },
-      });
-      Auth.login(token);
-    } catch (e) {
-      console.log(e);
-    }
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
   };
 
-
-    return (
-      < > 
-      </>
-    )
-  }
-  
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="/signup" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
+}

@@ -1,8 +1,15 @@
 //imports and exports of components
-import Album from "./Album"
 import Footer from "./Footer"
+import Header from "./Header"
+import MyBag from "./MyBag"
+import MyCollection from "./MyCollection"
+import SearchPage from "./SearchPage"
 
-export default {
-    Album, 
-    Footer
+
+export default { 
+    Footer, 
+    Header,
+    MyBag,
+    MyCollection,
+    SearchPage
 }

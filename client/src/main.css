@@ -15,6 +15,9 @@ html {
     background-size: cover;
     background-repeat: no-repeat;
     background-color: black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .disc-card {
