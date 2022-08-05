@@ -48,5 +48,6 @@ const discSchema = new Schema(
     }
 );
 
+const Disc = model("Disc", discSchema);
 
-module.exports = discSchema;
+module.exports = Disc;
