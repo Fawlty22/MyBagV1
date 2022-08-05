@@ -9,6 +9,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { StoreProvider } from "./utils/GlobalContext";
 import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
 import Footer from "./components/Footer";
 import "./App.css";
 
@@ -32,12 +33,15 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  
   return (
     <ApolloProvider client={client}>
       <Router>
         <StoreProvider>
           <Switch>
             <Route exact path="/" render={()=> <Dashboard />} />
+            <Route exact path="/login" render={()=> <Login />} />
           </Switch>
         </StoreProvider>
       </Router>
