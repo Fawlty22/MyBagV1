@@ -110,6 +110,9 @@ export default function Album() {
               <Button variant="contained" color="secondary">
                 My Collection
               </Button>
+              <Button variant="contained" color="primary">
+                Search
+              </Button>
             </Stack>
           </Container>
         </Box>
