@@ -67,7 +67,7 @@ export default function Header({currentPage, setCurrentPage}) {
               <Button variant="contained" color="secondary" onClick={()=> setCurrentPage("MyCollection")}>
                 My Collection
               </Button>
-              <Button variant="contained" color="primary" onClick={()=> setCurrentPage("Search")}>
+              <Button variant="contained" color="primary" onClick={()=> setCurrentPage("SearchPage")}>
                 Search
               </Button>
             </Stack>
