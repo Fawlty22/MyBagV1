@@ -24,9 +24,9 @@ const resolvers = {
       if (!correctPw) {
         throw new AuthenticationError("Incorrect credentials");
       }
-
+      
       const token = signToken(user);
-
+      console.log(context.user);
       return { token, user };
     },
     addUser: async (parent, args, context) => {
@@ -37,6 +37,7 @@ const resolvers = {
     },
     addDisc: async (parent, args, context) => {
       const disc = await Disc.create(args)
+      console.log(context);
       const userUpdate = await User.findByIdAndUpdate(
         { _id: context.user._id },
         {

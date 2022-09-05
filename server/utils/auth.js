@@ -16,8 +16,8 @@ module.exports = {
     }
 
     if (!token) {
-      throw new AuthenticationError('You must be logged in');
-      // return req;
+      // throw new AuthenticationError('You must be logged in');
+      return req;
     }
 
     try {

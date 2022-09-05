@@ -1,5 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
+import { useStoreContext } from "../utils/GlobalContext";
+import { UPDATE_USER } from "../utils/actions";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -31,6 +33,7 @@ const theme = createTheme({
 });
 
 export default function SignIn() {
+  const [state, dispatch] = useStoreContext();
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
 
@@ -44,8 +47,14 @@ export default function SignIn() {
           password: formState.password,
         },
       });
-      console.log(mutationResponse)
+      console.log("mutationresponse", mutationResponse)
       const { token, user } = mutationResponse.data.login;
+
+      dispatch({
+        type: UPDATE_USER,
+        payload: { token: token, _id: user._id },
+      });
+      
       Auth.login(token);
     } catch (e) {
       console.log(e);

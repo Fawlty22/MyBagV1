@@ -26,10 +26,6 @@ export default function Dashboard() {
   if (!user) {
     return <Redirect to={"/login"} />;
   }
-//if loading...
-  if (loading) {
-    <h1>Loading Please Wait...</h1>;
-  }
 
   return (
     <>
