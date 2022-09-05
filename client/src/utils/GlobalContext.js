@@ -1,13 +1,12 @@
 import React, { createContext, useContext } from 'react';
-import { useEmployeeReducer } from './reducers';
+import { useUserReducer } from './reducers';
 
 const StoreContext = createContext()
 const { Provider } = StoreContext;
 
 const StoreProvider = ({ value = [], ...props }) => {
-    const [ state, dispatch] = useEmployeeReducer({
-        employee: { _id: '', token: '' }, 
-        customers: []
+    const [ state, dispatch] = useUserReducer({
+        user: { _id: '', token: '' }
     })
 
     return <Provider value={[state, dispatch]} {...props} />

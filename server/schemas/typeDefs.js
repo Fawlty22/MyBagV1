@@ -29,11 +29,14 @@ type User {
   }
 
   type Query {
-    user(email: String!): User
+    user(_id: ID!): User
   }
   
   type Mutation {
-    login(username: String!, password: String!): Auth
+    login(
+      username: String!, 
+      password: String!
+      ): Auth
 
     addUser(
       username: String!

@@ -5,8 +5,8 @@ const {  User, Disc } = require("../models");
 
 const resolvers = {
   Query: {
-    user: async (parent, { email }, context) => {
-          return User.findOne({ email: email })
+    user: async (parent, { _id }, context) => {
+          return User.findOne({ _id: _id })
             .select("-__v")
             .populate("discs");
       },
@@ -24,9 +24,9 @@ const resolvers = {
       if (!correctPw) {
         throw new AuthenticationError("Incorrect credentials");
       }
-
+      
       const token = signToken(user);
-
+      console.log(context.user);
       return { token, user };
     },
     addUser: async (parent, args, context) => {
@@ -37,6 +37,7 @@ const resolvers = {
     },
     addDisc: async (parent, args, context) => {
       const disc = await Disc.create(args)
+      console.log(context);
       const userUpdate = await User.findByIdAndUpdate(
         { _id: context.user._id },
         {
