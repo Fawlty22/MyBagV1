@@ -33,7 +33,10 @@ type User {
   }
   
   type Mutation {
-    login(username: String!, password: String!): Auth
+    login(
+      username: String!, 
+      password: String!
+      ): Auth
 
     addUser(
       username: String!

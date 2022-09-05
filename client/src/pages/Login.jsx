@@ -1,40 +1,64 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import * as React from "react";
+import { useState } from "react";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useMutation } from "@apollo/client";
+import { LOGIN_MUTATION } from "../graphql/mutations";
+import Auth from "../utils/auth";
 
 const theme = createTheme({
-    palette: {
-      type: "light",
-      primary: {
-        main: "#5EBEC4",
-        light: "#7ECBCF",
-      },
-      secondary: {
-        main: "#F92C85",
-      },
-      background: {
-        default: "#FDF5DF",
-        dark: "#C1C1C1",
-      },
+  palette: {
+    type: "light",
+    primary: {
+      main: "#5EBEC4",
+      light: "#7ECBCF",
     },
-  });
+    secondary: {
+      main: "#F92C85",
+    },
+    background: {
+      default: "#FDF5DF",
+      dark: "#C1C1C1",
+    },
+  },
+});
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const [formState, setFormState] = useState({ username: "", password: "" });
+  const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+
+    try {
+      const mutationResponse = await login({
+        variables: {
+          username: formState.username,
+          password: formState.password,
+        },
+      });
+      console.log(mutationResponse)
+      const { token, user } = mutationResponse.data.login;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
     });
+    console.log(formState)
   };
 
   return (
@@ -44,25 +68,30 @@ export default function SignIn() {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
+              onChange={handleChange}
             />
             <TextField
               margin="normal"
@@ -73,8 +102,9 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleChange}
             />
-            
+
             <Button
               type="submit"
               fullWidth
