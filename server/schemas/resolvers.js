@@ -5,8 +5,8 @@ const {  User, Disc } = require("../models");
 
 const resolvers = {
   Query: {
-    user: async (parent, { email }, context) => {
-          return User.findOne({ email: email })
+    user: async (parent, { _id }, context) => {
+          return User.findOne({ _id: _id })
             .select("-__v")
             .populate("discs");
       },

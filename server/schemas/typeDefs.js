@@ -29,7 +29,7 @@ type User {
   }
 
   type Query {
-    user(email: String!): User
+    user(_id: ID!): User
   }
   
   type Mutation {
