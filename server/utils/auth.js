@@ -16,15 +16,16 @@ module.exports = {
     }
 
     if (!token) {
-      // throw new AuthenticationError('You must be logged in');
-      return req;
+      throw new AuthenticationError('You must be logged in');
+      // return req;
     }
 
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
     } catch {
-      console.log('Invalid token');
+      
+      console.log("invalid token");
     }
     return req;
   },
