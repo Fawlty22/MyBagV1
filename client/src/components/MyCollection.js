@@ -10,42 +10,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-//dummy data, this will come from api in future
-const cards = [
-  {
-    dataId: "62",
-    speed: "13",
-    glide: "6",
-    turn: "-2",
-    fade: "2",
-    name: "Shryke",
-    flightType: "Distance Drivers",
-    brand: "Innova",
-    flightPath: "https://mst12.inboundsdiscgolf.com/8018368.png",
-  },
-  {
-    dataId: "67",
-    speed: "13",
-    glide: "5",
-    turn: "-3",
-    fade: "2",
-    name: "Katana",
-    flightType: "Distance Drivers",
-    brand: "Innova",
-    flightPath: "https://mst12.inboundsdiscgolf.com/8338610.png",
-  },
-  {
-    dataId: "68",
-    speed: "13",
-    glide: "6",
-    turn: "-3",
-    fade: "2",
-    name: "Daedalus",
-    flightType: "Distance Drivers",
-    brand: "Innova",
-    flightPath: "https://mst12.inboundsdiscgolf.com/1331828.png",
-  },
-];
 
 const theme = createTheme({
   palette: {
@@ -64,7 +28,7 @@ const theme = createTheme({
   },
 });
 
-export default function MyCollection() {
+export default function MyCollection({ userDataState ,setUserDataState }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -74,7 +38,7 @@ export default function MyCollection() {
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map((card) => (
+            {userDataState && userDataState.user.discs.map((card) => (
               <Grid item key={card.name} xs={12} sm={6} md={4}>
                 <Card
                   variant="outlined"
