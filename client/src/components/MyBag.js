@@ -30,13 +30,11 @@ const theme = createTheme({
 });
 
 export default function MyBag({ userDataState, setUserDataState }) {
-  console.log("userDataState inside myBag", userDataState);
+  
   const [toggleInBag, { error, data }] = useMutation(TOGGLEINBAG_MUTATION);
 
   const handleBagToggle = async (e) => {
     e.preventDefault();
-    console.log(typeof e.target.parentElement.previousElementSibling.children[0].textContent)
-    
     try {
       const mutationResponse = await toggleInBag({
         variables: {

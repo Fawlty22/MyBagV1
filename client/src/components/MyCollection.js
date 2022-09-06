@@ -9,7 +9,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import { useMutation } from "@apollo/client";
+import { TOGGLEINBAG_MUTATION, REMOVEDISC_MUTATION } from "../graphql/mutations";
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,42 @@ const theme = createTheme({
 });
 
 export default function MyCollection({ userDataState ,setUserDataState }) {
+
+  const [toggleInBag, { toggleError, toggleData }] = useMutation(TOGGLEINBAG_MUTATION);
+  const [removeDisc, { removeError, removeData }] = useMutation(REMOVEDISC_MUTATION);
+
+  const handleBagToggle = async (e) => {
+    e.preventDefault();
+    try {
+      const toggleMutationResponse = await toggleInBag({
+        variables: {
+          name: e.target.parentElement.previousElementSibling.children[0].textContent,
+        },
+        if(error) {
+          return error;
+        },
+      });
+    } catch (e) {
+      console.log("toggle mutation error", e);
+    }
+  };
+
+  const handleDiscRemove = async (e) => {
+    e.preventDefault();
+    try {
+      const removeMutationResponse = await removeDisc({
+        variables: {
+          name: e.target.parentElement.previousElementSibling.children[0].textContent,
+        },
+        if(error) {
+          return error;
+        },
+      });
+    } catch (e) {
+      console.log("toggle mutation error", e);
+    }
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -72,7 +109,7 @@ export default function MyCollection({ userDataState ,setUserDataState }) {
                   </CardContent>
                   <CardActions>
                     {/* this add to bag button will conditonally render based on the inBag property on the user object */}
-                    <Button size="small">Add To Bag</Button>
+                    {card.inBag ? <Button onClick={handleBagToggle} size="small">In Bag, Remove?</Button> : <Button onClick={handleBagToggle} size="small">Add To Bag</Button>}
                     <Button size="small">Remove From Collection</Button>
                   </CardActions>
                 </Card>

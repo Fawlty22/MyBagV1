@@ -26,7 +26,6 @@ const resolvers = {
       }
       
       const token = signToken(user);
-      console.log(context.user);
       return { token, user };
     },
     addUser: async (parent, args, context) => {
@@ -37,7 +36,6 @@ const resolvers = {
     },
     addDisc: async (parent, args, context) => {
       const disc = await Disc.create(args)
-      console.log(context);
       const userUpdate = await User.findByIdAndUpdate(
         { _id: context.user._id },
         {
@@ -62,8 +60,6 @@ const resolvers = {
       return userUpdate;
     },
     toggleInBag: async (parent, { name }, context) => {
-      console.log(context)
-
       const user = await User.findById(context.user._id)
       let discs = user.discs
       discs.forEach(disc => {
