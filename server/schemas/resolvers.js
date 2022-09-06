@@ -49,7 +49,7 @@ const resolvers = {
       );
       return userUpdate;
     }, 
-    removeDisc: async (parent, {name}, context) => {
+    removeDisc: async (parent, { name }, context) => {
       const userUpdate = await User.findByIdAndUpdate(
         { _id: context.user._id },
         {
@@ -61,11 +61,13 @@ const resolvers = {
       );
       return userUpdate;
     },
-    toggleInBag: async (parent, args, context) => {
+    toggleInBag: async (parent, { name }, context) => {
+      console.log(context)
+
       const user = await User.findById(context.user._id)
       let discs = user.discs
       discs.forEach(disc => {
-        if(disc.name == args.name){
+        if(disc.name == name){
           let value =disc.inBag
           disc.inBag = !value;
         }

@@ -25,7 +25,7 @@ export default function Dashboard() {
     setUserDataState(data)
   }, [data])
 
-  console.log("data", data)
+  // console.log("data", data)
   
   //if not logged in, redirect to login page
   if (!user) {

@@ -47,15 +47,15 @@ export const ADDDISC_MUTATION = gql`
     $flightType: String!
   ) {
     addDisc(
-      brand: String
-      name: String
-      speed: String
-      glide: String
-      turn: String
-      fade: String
-      inBag: Boolean  
-      flightPath: String
-      flightType: String
+      brand: $brand
+      name: $name
+      speed: $speed
+      glide: $glide
+      turn: $turn
+      fade: $fade
+      inBag: $inBag  
+      flightPath: $flightPath
+      flightType: $flightType
     ) {
       user {
         _id
@@ -82,7 +82,7 @@ export const REMOVEDISC_MUTATION = gql`
     $name: String!
   ) {
     removeDisc(
-      name: String
+      name: $name
     ) {
       user {
         _id
@@ -109,9 +109,8 @@ export const TOGGLEINBAG_MUTATION = gql`
     $name: String!
   ) {
     toggleInBag(
-      name: String
+      name: $name
     ) {
-      user {
         _id
         username
         email
@@ -126,7 +125,7 @@ export const TOGGLEINBAG_MUTATION = gql`
           flightPath
           flightType
         }
-      }
+      
     }
   }
 `;

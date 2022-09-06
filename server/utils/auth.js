@@ -7,6 +7,7 @@ const expiration = '2h';
 module.exports = {
   //middleware for verifying token on server requests
   authMiddleware: function ({ req }) {
+   
     // allows token to be sent via req.body, req.query, or headers
     let token = req.body.token || req.query.token || req.headers.authorization;
 
@@ -14,7 +15,7 @@ module.exports = {
     if (req.headers.authorization) {
       token = token.split(' ').pop().trim();
     }
-
+    
     if (!token) {
       // throw new AuthenticationError('You must be logged in');
       return req;
