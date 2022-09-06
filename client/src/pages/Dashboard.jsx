@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Redirect } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../graphql/queries";
@@ -15,10 +15,15 @@ export default function Dashboard() {
   const id = user.data._id
 //sets active page in the state
   const [currentPage, setCurrentPage] = useState("MyCollection");
+  const [userDataState, setUserDataState] = useState({});
   //query for the user using the _id, uses this data to render out displays.
   const { data, error, loading } = useQuery(QUERY_USER, {
     variables: { _id: id },
   });
+
+  useMemo(()=>{
+    setUserDataState(data)
+  }, [data])
 
   console.log("data", data)
   
@@ -30,8 +35,8 @@ export default function Dashboard() {
   return (
     <>
       <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      {currentPage === "MyCollection" && <MyCollection />}
-      {currentPage === "MyBag" && <MyBag />}
+      {currentPage === "MyCollection" && <MyCollection userDataState={userDataState} setUserDataState={setUserDataState} />}
+      {currentPage === "MyBag" && <MyBag userDataState={userDataState} setUserDataState={setUserDataState} />}
       {currentPage === "SearchPage" && <SearchPage />}
     </>
   );
