@@ -82,7 +82,6 @@ export const REMOVEDISC_MUTATION = gql`
     removeDisc(
       name: $name
     ) {
-      user {
         _id
         username
         email
@@ -97,7 +96,6 @@ export const REMOVEDISC_MUTATION = gql`
           flightPath
           flightType
         }
-      }
     }
   }
 `;

@@ -31,14 +31,12 @@ const theme = createTheme({
   },
 });
 
-export default function SearchPage(userDataState, setUserDataState) {
+export default function SearchPage({userDataState, setUserDataState}) {
   const [discSearchState, setDiscSearchState] = useState("");
   const [loadingResponse, setLoadingResponse] = useState(false);
   const [searchResponse, setSearchResponse] = useState();
   const [addDisc, { addError, toggleData }] = useMutation(ADDDISC_MUTATION);
   const [removeDisc, { removeError, removeData }] = useMutation(REMOVEDISC_MUTATION);
-
-  
 
   function handleChange(e) {
     setDiscSearchState(e.target.value);
@@ -46,7 +44,7 @@ export default function SearchPage(userDataState, setUserDataState) {
 
   const handleSearch = (e) => {
     e.preventDefault();
-
+    setLoadingResponse(true)
     const options = {
       method: "GET",
       headers: {
@@ -61,8 +59,9 @@ export default function SearchPage(userDataState, setUserDataState) {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        console.log("mutationres",response);
         setSearchResponse(response);
+        setLoadingResponse(false)
       })
       .catch((err) => console.error(err));
   };
@@ -132,9 +131,12 @@ export default function SearchPage(userDataState, setUserDataState) {
             onChange={handleChange}
           />
           <Button variant="contained" color="secondary" onClick={handleSearch}>
-            Search
+            {loadingResponse? "Loading..." : "Search"}
           </Button>
+          
         </Box>
+
+        
 
         {searchResponse && (
           <Container sx={{ py: 8}} maxWidth="md">
@@ -172,7 +174,7 @@ export default function SearchPage(userDataState, setUserDataState) {
                   </CardContent>
                   <CardActions>
                     {/* this add to bag button will conditonally render based on the inBag property on the user object */}
-                    <Button onClick={handleDiscAdd} size="small">Add to Collection</Button>
+                    {userDataState.user.discs.some(e=>e.name === searchResponse[0].name) ? <Button onClick={handleDiscRemove} size="small">Remove from Collection</Button> : <Button onClick={handleDiscAdd} size="small">Add to Collection</Button>}
                     
                   </CardActions>
                 </Card>
