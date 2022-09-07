@@ -37,7 +37,7 @@ export default function Dashboard() {
       <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
       {currentPage === "MyCollection" && <MyCollection userDataState={userDataState} setUserDataState={setUserDataState} />}
       {currentPage === "MyBag" && <MyBag userDataState={userDataState} setUserDataState={setUserDataState} />}
-      {currentPage === "SearchPage" && <SearchPage />}
+      {currentPage === "SearchPage" && <SearchPage userDataState={userDataState} setUserDataState={setUserDataState}/>}
     </>
   );
 }

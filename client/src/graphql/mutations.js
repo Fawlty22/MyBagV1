@@ -57,7 +57,6 @@ export const ADDDISC_MUTATION = gql`
       flightPath: $flightPath
       flightType: $flightType
     ) {
-      user {
         _id
         username
         email
@@ -72,7 +71,6 @@ export const ADDDISC_MUTATION = gql`
           flightPath
           flightType
         }
-      }
     }
   }
 `;

@@ -11,6 +11,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useMutation } from "@apollo/client";
+import { ADDDISC_MUTATION, REMOVEDISC_MUTATION } from "../graphql/mutations";
 
 const theme = createTheme({
   palette: {
@@ -29,10 +31,14 @@ const theme = createTheme({
   },
 });
 
-export default function SearchPage() {
+export default function SearchPage(userDataState, setUserDataState) {
   const [discSearchState, setDiscSearchState] = useState("");
   const [loadingResponse, setLoadingResponse] = useState(false);
   const [searchResponse, setSearchResponse] = useState();
+  const [addDisc, { addError, toggleData }] = useMutation(ADDDISC_MUTATION);
+  const [removeDisc, { removeError, removeData }] = useMutation(REMOVEDISC_MUTATION);
+
+  
 
   function handleChange(e) {
     setDiscSearchState(e.target.value);
@@ -60,6 +66,49 @@ export default function SearchPage() {
       })
       .catch((err) => console.error(err));
   };
+
+  const handleDiscRemove = async (e) => {
+    e.preventDefault();
+    try {
+      const removeMutationResponse = await removeDisc({
+        variables: {
+          name: e.target.parentElement.previousElementSibling.children[0].textContent,
+        },
+        if(error) {
+          return error;
+        },
+      });
+    } catch (e) {
+      console.log("remove mutation error", e);
+    }
+  };
+
+  const handleDiscAdd = async (e) => {
+    e.preventDefault();
+    
+
+    try {
+      const addMutationResponse = await addDisc({
+        variables: {
+          brand: searchResponse[0].brand,
+          name: searchResponse[0].name,
+          speed: searchResponse[0].speed,
+          glide: searchResponse[0].glide,
+          turn: searchResponse[0].turn,
+          fade: searchResponse[0].fade,
+          inBag: false,
+          flightPath: searchResponse[0].flightPath,
+          flightType: searchResponse[0].flightType
+        },
+        if(error) {
+          return error;
+        },
+      });
+    } catch (e) {
+      console.log("add mutation error", e);
+    }
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -123,7 +172,8 @@ export default function SearchPage() {
                   </CardContent>
                   <CardActions>
                     {/* this add to bag button will conditonally render based on the inBag property on the user object */}
-                    <Button size="small">Remove From Bag</Button>
+                    <Button onClick={handleDiscAdd} size="small">Add to Collection</Button>
+                    
                   </CardActions>
                 </Card>
               </Grid>
