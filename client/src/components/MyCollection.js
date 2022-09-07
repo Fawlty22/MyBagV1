@@ -29,7 +29,7 @@ const theme = createTheme({
   },
 });
 
-export default function MyCollection({ userDataState ,setUserDataState }) {
+export default function MyCollection({ userDataState, setUserDataState }) {
 
   const [toggleInBag, { toggleError, toggleData }] = useMutation(TOGGLEINBAG_MUTATION);
   const [removeDisc, { removeError, removeData }] = useMutation(REMOVEDISC_MUTATION);
@@ -110,7 +110,7 @@ export default function MyCollection({ userDataState ,setUserDataState }) {
                   <CardActions>
                     {/* this add to bag button will conditonally render based on the inBag property on the user object */}
                     {card.inBag ? <Button onClick={handleBagToggle} size="small">In Bag, Remove?</Button> : <Button onClick={handleBagToggle} size="small">Add To Bag</Button>}
-                    <Button size="small">Remove From Collection</Button>
+                    <Button onClick={handleDiscRemove} size="small">Remove From Collection</Button>
                   </CardActions>
                 </Card>
               </Grid>

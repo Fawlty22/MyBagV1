@@ -57,7 +57,6 @@ export const ADDDISC_MUTATION = gql`
       flightPath: $flightPath
       flightType: $flightType
     ) {
-      user {
         _id
         username
         email
@@ -72,7 +71,6 @@ export const ADDDISC_MUTATION = gql`
           flightPath
           flightType
         }
-      }
     }
   }
 `;
@@ -84,7 +82,6 @@ export const REMOVEDISC_MUTATION = gql`
     removeDisc(
       name: $name
     ) {
-      user {
         _id
         username
         email
@@ -99,7 +96,6 @@ export const REMOVEDISC_MUTATION = gql`
           flightPath
           flightType
         }
-      }
     }
   }
 `;

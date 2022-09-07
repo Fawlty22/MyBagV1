@@ -25,7 +25,6 @@ export default function Dashboard() {
     setUserDataState(data)
   }, [data])
 
-  // console.log("data", data)
   
   //if not logged in, redirect to login page
   if (!user) {
@@ -37,7 +36,7 @@ export default function Dashboard() {
       <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
       {currentPage === "MyCollection" && <MyCollection userDataState={userDataState} setUserDataState={setUserDataState} />}
       {currentPage === "MyBag" && <MyBag userDataState={userDataState} setUserDataState={setUserDataState} />}
-      {currentPage === "SearchPage" && <SearchPage />}
+      {currentPage === "SearchPage" && <SearchPage userDataState={userDataState} setUserDataState={setUserDataState}/>}
     </>
   );
 }

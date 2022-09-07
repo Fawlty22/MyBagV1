@@ -61,13 +61,13 @@ export default function Header({currentPage, setCurrentPage}) {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained" color="primary" onClick={()=> setCurrentPage("MyBag")}>
+              <Button variant="contained" color={currentPage == "MyBag" ? "secondary" : "primary"} onClick={()=> setCurrentPage("MyBag")}>
                 My Bag
               </Button>
-              <Button variant="contained" color="secondary" onClick={()=> setCurrentPage("MyCollection")}>
+              <Button variant="contained" color={currentPage == "MyCollection" ? "secondary" : "primary"} onClick={()=> setCurrentPage("MyCollection")}>
                 My Collection
               </Button>
-              <Button variant="contained" color="primary" onClick={()=> setCurrentPage("SearchPage")}>
+              <Button variant="contained" color={currentPage == "SearchPage" ? "secondary" : "primary"} onClick={()=> setCurrentPage("SearchPage")}>
                 Search
               </Button>
             </Stack>
