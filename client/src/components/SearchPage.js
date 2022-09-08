@@ -160,7 +160,7 @@ export default function SearchPage({userDataState, setUserDataState}) {
                     image={searchResponse[0].flightPath}
                     alt="random"
                   />
-                  <CardContent sx={{ flexGrow: 1 }}> 
+                  <CardContent className="disc-card-content" sx={{ flexGrow: 1, bgcolor: "primary.main", textAlign: "center" }}> 
                     <Typography gutterBottom variant="h5" component="h2">
                       {searchResponse[0].name}
                     </Typography>
@@ -172,9 +172,9 @@ export default function SearchPage({userDataState, setUserDataState}) {
                     <Typography>Turn:{searchResponse[0].turn}</Typography>
                     <Typography>Fade:{searchResponse[0].fade}</Typography>
                   </CardContent>
-                  <CardActions>
+                  <CardActions sx={{ flexGrow: 1, bgcolor: "background.dark" }}>
                     {/* this add to bag button will conditonally render based on the inBag property on the user object */}
-                    {userDataState.user.discs.some(e=>e.name === searchResponse[0].name) ? <Button onClick={handleDiscRemove} size="small">Remove from Collection</Button> : <Button onClick={handleDiscAdd} size="small">Add to Collection</Button>}
+                    {userDataState.user.discs.some(e=>e.name === searchResponse[0].name) ? <Button sx={{ bgcolor: "primary.light", color: "secondary.main" }} onClick={handleDiscRemove} size="small">Remove from Collection</Button> : <Button  sx={{ bgcolor: "primary.light", color: "secondary.main" }}onClick={handleDiscAdd} size="small">Add to Collection</Button>}
                     
                   </CardActions>
                 </Card>
