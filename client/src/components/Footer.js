@@ -1,8 +1,10 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Auth from "../utils/auth"
 
 const theme = createTheme({
   palette: {
@@ -24,7 +26,7 @@ const theme = createTheme({
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center" sx={{fontFamily: "Fredoka One"}}>
-      {"Copyright © "}
+      {"Matthew Keys © "}
       <Link
         color="inherit"
         href="https://fawlty22.github.io/MatthewKeys-Portfolio"
@@ -40,23 +42,27 @@ function Copyright() {
 }
 
 export default function Footer() {
+  const loggedIn = Auth.loggedIn();
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ bgcolor: "background.dark", p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom
-        sx={{fontFamily: "Fredoka One"}}>
-          Thanks for checking out the app!
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-          sx={{fontFamily: "Fredoka One"}}
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
+      <Box textAlign="center" sx={{ bgcolor: "background.dark", p: 2, }} component="footer">
+        {loggedIn && <Button 
+        variant="contained" 
+        color={"secondary"} 
+        sx={{fontFamily: 'Fredoka One', mb: 2}}
+        onClick={() => Auth.logout()}>
+          Logout
+        </Button>}
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color="text.secondary"
+            component="p"
+            sx={{fontFamily: "Fredoka One"}}
+          >
+            Thanks for checking out the app!
+          </Typography>
+          <Copyright />
       </Box>
     </ThemeProvider>
   );

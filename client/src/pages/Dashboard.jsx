@@ -12,7 +12,7 @@ import SearchPage from "../components/SearchPage";
 export default function Dashboard() {
   //fetches the user profile
   let user = Auth.getProfile();
-  const id = user.data._id
+  const id = user ? user.data._id : 1;
 //sets active page in the state
   const [currentPage, setCurrentPage] = useState("MyCollection");
   const [userDataState, setUserDataState] = useState({});
@@ -24,7 +24,6 @@ export default function Dashboard() {
   useMemo(()=>{
     setUserDataState(data)
   }, [data])
-
   
   //if not logged in, redirect to login page
   if (!user) {

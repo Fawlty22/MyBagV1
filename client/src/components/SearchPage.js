@@ -130,7 +130,7 @@ export default function SearchPage({userDataState, setUserDataState}) {
             value={discSearchState}
             onChange={handleChange}
           />
-          <Button variant="contained" color="secondary" onClick={handleSearch}>
+          <Button variant="contained" color="secondary" onClick={handleSearch} sx={{fontFamily: 'Fredoka One'}}>
             {loadingResponse? "Loading..." : "Search"}
           </Button>
           
@@ -172,10 +172,9 @@ export default function SearchPage({userDataState, setUserDataState}) {
                     <Typography>Turn:{searchResponse[0].turn}</Typography>
                     <Typography>Fade:{searchResponse[0].fade}</Typography>
                   </CardContent>
-                  <CardActions sx={{ flexGrow: 1, bgcolor: "background.dark" }}>
+                  <CardActions sx={{ flexGrow: 1, bgcolor: "background.dark", display: "flex", justifyContent: "center" }}>
                     {/* this add to bag button will conditonally render based on the inBag property on the user object */}
-                    {userDataState.user.discs.some(e=>e.name === searchResponse[0].name) ? <Button sx={{ bgcolor: "primary.light", color: "secondary.main" }} onClick={handleDiscRemove} size="small">Remove from Collection</Button> : <Button  sx={{ bgcolor: "primary.light", color: "secondary.main" }}onClick={handleDiscAdd} size="small">Add to Collection</Button>}
-                    
+                    {userDataState.user.discs.some(e=>e.name === searchResponse[0].name) ? <Button sx={{ bgcolor: "primary.light", color: "secondary.main", fontFamily: "Fredoka One"}} onClick={handleDiscRemove} size="small">Remove from Collection</Button> : <Button  sx={{ bgcolor: "primary.light", color: "secondary.main", fontFamily: "Fredoka One" }} onClick={handleDiscAdd} size="small">Add to Collection</Button>}
                   </CardActions>
                 </Card>
               </Grid>
