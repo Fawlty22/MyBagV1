@@ -26,7 +26,7 @@ module.exports = {
       req.user = data;
     } catch {
       console.log("invalid token");
-      throw new AuthenticationError('You must be logged in');
+      // throw new AuthenticationError('You must be logged in');
     }
     return req;
   },
