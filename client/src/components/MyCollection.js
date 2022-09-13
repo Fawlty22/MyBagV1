@@ -95,22 +95,22 @@ export default function MyCollection({ userDataState, setUserDataState }) {
                     image={card.flightPath}
                     alt="random"
                   />
-                  <CardContent sx={{ flexGrow: 1 }}>
+                  <CardContent className="disc-card-content" sx={{ flexGrow: 1, bgcolor: "primary.main", textAlign: "center" }}>
                     <Typography gutterBottom variant="h5" component="h2">
                       {card.name}
                     </Typography>
                     <Typography variant="h6" component="h3">
                       {card.brand}
                     </Typography>
-                    <Typography>Speed:{card.speed}</Typography>
-                    <Typography>Glide:{card.glide}</Typography>
-                    <Typography>Turn:{card.turn}</Typography>
-                    <Typography>Fade:{card.fade}</Typography>
+                    <Typography>Speed: {card.speed}</Typography>
+                    <Typography>Glide: {card.glide}</Typography>
+                    <Typography>Turn: {card.turn}</Typography>
+                    <Typography>Fade: {card.fade}</Typography>
                   </CardContent>
-                  <CardActions>
+                  <CardActions sx={{ flexGrow: 1, bgcolor: "background.dark" }}>
                     {/* this add to bag button will conditonally render based on the inBag property on the user object */}
-                    {card.inBag ? <Button onClick={handleBagToggle} size="small">In Bag, Remove?</Button> : <Button onClick={handleBagToggle} size="small">Add To Bag</Button>}
-                    <Button onClick={handleDiscRemove} size="small">Remove From Collection</Button>
+                    {card.inBag ? <Button sx={{ bgcolor: "primary.light", color: "secondary.main" }} onClick={handleBagToggle} size="small">In Bag, Remove?</Button> : <Button sx={{ bgcolor: "primary.light", color: "secondary.main" }} onClick={handleBagToggle} size="small">Add To Bag</Button>}
+                    <Button sx={{ bgcolor: "primary.light", color: "secondary.main" }} onClick={handleDiscRemove} size="small">Remove From Collection</Button>
                   </CardActions>
                 </Card>
               </Grid>

@@ -32,8 +32,8 @@ export default function Header({currentPage, setCurrentPage}) {
     <Box
           sx={{
             bgcolor: "background.dark",
-            pt: 8,
-            pb: 6,
+            pt: 2,
+            pb: 4
           }}
         >
           <Container maxWidth="sm">
@@ -43,6 +43,7 @@ export default function Header({currentPage, setCurrentPage}) {
               align="center"
               color="text.primary"
               gutterBottom
+              sx={{fontFamily: 'Fredoka One'}}
             >
               MyDiscs
             </Typography>
@@ -51,6 +52,7 @@ export default function Header({currentPage, setCurrentPage}) {
               align="center"
               color="text.secondary"
               paragraph
+              sx={{fontFamily: 'Fredoka One'}}
             >
               Use the buttons below to switch between your collection and your
               bag! Keep track of all of those pesky circles!
@@ -61,13 +63,13 @@ export default function Header({currentPage, setCurrentPage}) {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained" color={currentPage == "MyBag" ? "secondary" : "primary"} onClick={()=> setCurrentPage("MyBag")}>
+              <Button variant="contained" color={currentPage == "MyBag" ? "secondary" : "primary"} onClick={()=> setCurrentPage("MyBag")} sx={{fontFamily: 'Fredoka One'}}>
                 My Bag
               </Button>
-              <Button variant="contained" color={currentPage == "MyCollection" ? "secondary" : "primary"} onClick={()=> setCurrentPage("MyCollection")}>
+              <Button variant="contained" color={currentPage == "MyCollection" ? "secondary" : "primary"} onClick={()=> setCurrentPage("MyCollection")} sx={{fontFamily: 'Fredoka One'}}>
                 My Collection
               </Button>
-              <Button variant="contained" color={currentPage == "SearchPage" ? "secondary" : "primary"} onClick={()=> setCurrentPage("SearchPage")}>
+              <Button variant="contained" color={currentPage == "SearchPage" ? "secondary" : "primary"} onClick={()=> setCurrentPage("SearchPage")} sx={{fontFamily: 'Fredoka One'}}>
                 Search
               </Button>
             </Stack>

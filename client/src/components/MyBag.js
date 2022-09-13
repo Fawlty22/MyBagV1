@@ -81,21 +81,21 @@ export default function MyBag({ userDataState, setUserDataState }) {
                           image={card.flightPath}
                           alt="random"
                         />
-                        <CardContent sx={{ flexGrow: 1, }}>
+                        <CardContent className="disc-card-content" sx={{ flexGrow: 1, bgcolor: "primary.main", textAlign: "center" }}>
                           <Typography gutterBottom variant="h5" component="h2">
                             {card.name}
                           </Typography>
-                          <Typography variant="h6" component="h3">
+                          <Typography gutterBottom variant="h6" component="h3">
                             {card.brand}
                           </Typography>
-                          <Typography>Speed:{card.speed}</Typography>
-                          <Typography>Glide:{card.glide}</Typography>
-                          <Typography>Turn:{card.turn}</Typography>
-                          <Typography>Fade:{card.fade}</Typography>
+                          <Typography>Speed: {card.speed}</Typography>
+                          <Typography>Glide: {card.glide}</Typography>
+                          <Typography>Turn: {card.turn}</Typography>
+                          <Typography>Fade: {card.fade}</Typography>
                         </CardContent>
-                        <CardActions>
+                        <CardActions sx={{ flexGrow: 1, bgcolor: "background.dark", display: "flex", justifyContent: "center"}}>
                           {/* this add to bag button will conditonally render based on the inBag property on the user object */}
-                          <Button onClick={handleBagToggle} size="small">Remove From Bag</Button>
+                          <Button sx={{ bgcolor: "primary.light", color: "secondary.main" }} onClick={handleBagToggle} size="small">Remove From Bag</Button>
                         </CardActions>
                       </Card>
                     </Grid>
