@@ -83,7 +83,7 @@ export default function SignIn() {
           }}
         >
           <Typography component="h1" variant="h4" sx={{fontFamily: "Fredoka One"}}>
-            Sign in
+            Login
           </Typography>
           <Box
             component="form"
@@ -120,7 +120,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2, fontFamily: "Fredoka One" }}
             >
-              Sign In
+              Login
             </Button>
             <Grid container>
               <Grid item xs>
