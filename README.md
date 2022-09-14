@@ -10,6 +10,8 @@
 
 
   ## **Description**
+  I'm almost finished here, have to just polish a few things and deploy!
+
   This is a simple app for keeping track of all of those plastic circles that pile up in every disc golfers house. This app lets golfers keep track of their collection and their bag quickly and easily.
 
 
