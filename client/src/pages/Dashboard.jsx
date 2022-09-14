@@ -14,7 +14,7 @@ export default function Dashboard() {
   let user = Auth.getProfile();
   const id = user ? user.data._id : 1;
 //sets active page in the state
-  const [currentPage, setCurrentPage] = useState("MyCollection");
+  const [currentPage, setCurrentPage] = useState("SearchPage");
   const [userDataState, setUserDataState] = useState({});
   //query for the user using the _id, uses this data to render out displays.
   const { data, error, loading } = useQuery(QUERY_USER, {

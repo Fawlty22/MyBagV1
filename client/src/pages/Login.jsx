@@ -34,11 +34,13 @@ const theme = createTheme({
 
 export default function SignIn() {
   const [state, dispatch] = useStoreContext();
+  const [loginError, setLoginError] = useState(false);
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoginError(false);
 
     try {
       const mutationResponse = await login({
@@ -47,7 +49,7 @@ export default function SignIn() {
           password: formState.password,
         },
       });
-      console.log("mutationresponse", mutationResponse)
+
       const { token, user } = mutationResponse.data.login;
 
       dispatch({
@@ -56,7 +58,9 @@ export default function SignIn() {
       });
       
       Auth.login(token);
+
     } catch (e) {
+      setLoginError(true);
       console.log(e);
     }
   };
@@ -113,6 +117,8 @@ export default function SignIn() {
               autoComplete="current-password"
               onChange={handleChange}
             />
+                        {loginError && <Typography variant="body2" color="secondary" sx={{fontFamily: "Fredoka One", mt:1}}>Incorrect Username or Password!</Typography>}
+
 
             <Button
               type="submit"
