@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useStoreContext } from "../utils/GlobalContext";
+import { UPDATE_USER } from "../utils/actions";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,7 +17,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMutation } from "@apollo/client";
 import { ADDUSER_MUTATION } from "../graphql/mutations";
 import Auth from "../utils/auth";
-import { Redirect } from "react-router-dom";
 
 
 
@@ -37,6 +38,7 @@ const theme = createTheme({
   });
 
 export default function SignUp() {
+  const [state, dispatch] = useStoreContext();
     const [formState, setFormState] = useState({ username: "", email: "", password: "" });
     const [signupError, setSignupError] = useState(false);
     const [addUser, { data, loading, error }] = useMutation(ADDUSER_MUTATION);
@@ -45,19 +47,27 @@ export default function SignUp() {
     event.preventDefault();
     setSignupError(false);
     try {
-        const mutationResponse = await addUser({
+        const signUpMutationResponse = await addUser({
           variables: {
             username: formState.username,
             email: formState.email,
             password: formState.password,
           },
         });
-        console.log("ADDUSER-mutationresponse", mutationResponse)
+        console.log("ADDUSER-signUpMutationresponse", signUpMutationResponse)
+        const { token, user } = signUpMutationResponse.data.addUser;
+
+        dispatch({
+          type: UPDATE_USER,
+          payload: { token: token, _id: user._id },
+        });
+
+        Auth.login(token)
       } catch (e) {
         setSignupError(true);
         console.log(e);
       }
-      return <Redirect to={"/login"} />
+      
   };
 
   const handleChange = (event) => {

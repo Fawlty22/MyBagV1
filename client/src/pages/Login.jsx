@@ -47,7 +47,7 @@ export default function SignIn() {
           password: formState.password,
         },
       });
-      console.log("mutationresponse", mutationResponse)
+
       const { token, user } = mutationResponse.data.login;
 
       dispatch({
@@ -56,6 +56,7 @@ export default function SignIn() {
       });
       
       Auth.login(token);
+      
     } catch (e) {
       console.log(e);
     }
