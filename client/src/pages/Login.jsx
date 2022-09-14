@@ -56,9 +56,8 @@ export default function SignIn() {
         type: UPDATE_USER,
         payload: { token: token, _id: user._id },
       });
-      
-      Auth.login(token);
 
+      Auth.login(token);
     } catch (e) {
       setLoginError(true);
       console.log(e);
@@ -71,7 +70,7 @@ export default function SignIn() {
       ...formState,
       [name]: value,
     });
-    console.log(formState)
+    console.log(formState);
   };
 
   return (
@@ -86,7 +85,11 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <Typography component="h1" variant="h4" sx={{fontFamily: "Fredoka One"}}>
+          <Typography
+            component="h1"
+            variant="h4"
+            sx={{ fontFamily: "Fredoka One" }}
+          >
             Login
           </Typography>
           <Box
@@ -117,8 +120,15 @@ export default function SignIn() {
               autoComplete="current-password"
               onChange={handleChange}
             />
-                        {loginError && <Typography variant="body2" color="secondary" sx={{fontFamily: "Fredoka One", mt:1}}>Incorrect Username or Password!</Typography>}
-
+            {loginError && (
+              <Typography
+                variant="body2"
+                color="secondary"
+                sx={{ fontFamily: "Fredoka One", mt: 1 }}
+              >
+                Incorrect Username or Password!
+              </Typography>
+            )}
 
             <Button
               type="submit"
@@ -130,12 +140,20 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2" sx={{fontFamily: "Fredoka One"}}>
+                <Link
+                  href="#"
+                  variant="body2"
+                  sx={{ fontFamily: "Fredoka One" }}
+                >
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2" sx={{fontFamily: "Fredoka One"}}>
+                <Link
+                  href="/signup"
+                  variant="body2"
+                  sx={{ fontFamily: "Fredoka One" }}
+                >
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

@@ -121,6 +121,7 @@ export default function SearchPage({ userDataState, setUserDataState }) {
         <Box
           textalign="center"
           component="form"
+          onSubmit={handleSearch}
           sx={{
             "& > :not(style)": { m: 2, width: "35ch" },
             display: "flex",
