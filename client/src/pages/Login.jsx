@@ -82,8 +82,8 @@ export default function SignIn() {
             alignItems: "center",
           }}
         >
-          <Typography component="h1" variant="h5">
-            Sign in
+          <Typography component="h1" variant="h4" sx={{fontFamily: "Fredoka One"}}>
+            Login
           </Typography>
           <Box
             component="form"
@@ -118,18 +118,18 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, fontFamily: "Fredoka One" }}
             >
-              Sign In
+              Login
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" sx={{fontFamily: "Fredoka One"}}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2">
+                <Link href="/signup" variant="body2" sx={{fontFamily: "Fredoka One"}}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

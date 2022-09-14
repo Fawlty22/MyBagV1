@@ -10,6 +10,7 @@ import { setContext } from "@apollo/client/link/context";
 import { StoreProvider } from "./utils/GlobalContext";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Footer from "./components/Footer";
 import "./App.css";
 
@@ -42,6 +43,7 @@ function App() {
           <Switch>
             <Route exact path="/" render={()=> <Dashboard />} />
             <Route exact path="/login" render={()=> <Login />} />
+            <Route exact path="/signup" render={()=> <Signup />} />
           </Switch>
         </StoreProvider>
       </Router>
