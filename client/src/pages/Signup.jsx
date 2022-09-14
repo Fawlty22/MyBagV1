@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMutation } from "@apollo/client";
 import { ADDUSER_MUTATION } from "../graphql/mutations";
 import Auth from "../utils/auth";
+import { Redirect } from "react-router-dom";
+
 
 
 const theme = createTheme({
@@ -36,11 +38,12 @@ const theme = createTheme({
 
 export default function SignUp() {
     const [formState, setFormState] = useState({ username: "", email: "", password: "" });
+    const [signupError, setSignupError] = useState(false);
     const [addUser, { data, loading, error }] = useMutation(ADDUSER_MUTATION);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setSignupError(false);
     try {
         const mutationResponse = await addUser({
           variables: {
@@ -50,10 +53,11 @@ export default function SignUp() {
           },
         });
         console.log("ADDUSER-mutationresponse", mutationResponse)
-        
       } catch (e) {
+        setSignupError(true);
         console.log(e);
       }
+      return <Redirect to={"/login"} />
   };
 
   const handleChange = (event) => {
@@ -120,6 +124,8 @@ export default function SignUp() {
               </Grid>
               
             </Grid>
+            {signupError && <Typography variant="body2" color="secondary" sx={{fontFamily: "Fredoka One", mt:1}}>That username or email is already in use. Please try another one!</Typography>}
+
             <Button
               type="submit"
               fullWidth
