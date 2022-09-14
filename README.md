@@ -37,9 +37,12 @@ Copyright 2022 Matthew Keys
 
   ## **Usage Information**
   On load, the app will direct you to the login page. Use the link at the bottom right to switch to the signup page and create your account. 
+
   Upon succesful creation, the app will redirect you to the search page where you can search for a disc to add to your collection. On each discs' information card you will see a photo of its' flight path, and all of the respective flight information. 
   Use the corresponding buttons to add or remove discs from your collection.
+
   On the header you will see buttons for 'My Bag' and 'My Collection'. Click these buttons to navigate between the two pages. From these pages you can toggle discs in and out of your bag, or remove them from you collection entirely. 
+  
   Use the search page to find some more discs!
 
   ## **Contribution Guidelines** 
