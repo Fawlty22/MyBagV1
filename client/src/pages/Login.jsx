@@ -35,12 +35,20 @@ const theme = createTheme({
 export default function SignIn() {
   const [state, dispatch] = useStoreContext();
   const [loginError, setLoginError] = useState(false);
+  const [emptyLineError, setEmptyLineError] = useState(false);
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoginError(false);
+    setEmptyLineError(false);
+
+    //invalid email and empty field error triggers
+    if (Object.values(formState).includes("")) {
+      setEmptyLineError(true);
+      return;
+    }
 
     try {
       const mutationResponse = await login({
@@ -127,6 +135,15 @@ export default function SignIn() {
                 sx={{ fontFamily: "Fredoka One", mt: 1 }}
               >
                 Incorrect Username or Password!
+              </Typography>
+            )}
+            {emptyLineError && (
+              <Typography
+                variant="body2"
+                color="secondary"
+                sx={{ fontFamily: "Fredoka One", mt: 1 }}
+              >
+                Please fill out every field!
               </Typography>
             )}
 
