@@ -12,6 +12,7 @@ import SearchPage from "../components/SearchPage";
 export default function Dashboard() {
   //fetches the user profile
   let user = Auth.getProfile();
+  let loggedIn = Auth.loggedIn();
   const id = user ? user.data._id : 1;
 //sets active page in the state
   const [currentPage, setCurrentPage] = useState("SearchPage");
@@ -26,7 +27,7 @@ export default function Dashboard() {
   }, [data])
   
   //if not logged in, redirect to login page
-  if (!user) {
+  if (!loggedIn) {
     return <Redirect to={"/login"} />;
   }
 
