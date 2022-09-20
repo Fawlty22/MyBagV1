@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import HeaderSmall from "../components/HeaderSmall";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -35,12 +36,20 @@ const theme = createTheme({
 export default function SignIn() {
   const [state, dispatch] = useStoreContext();
   const [loginError, setLoginError] = useState(false);
+  const [emptyLineError, setEmptyLineError] = useState(false);
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoginError(false);
+    setEmptyLineError(false);
+
+    //invalid email and empty field error triggers
+    if (Object.values(formState).includes("")) {
+      setEmptyLineError(true);
+      return;
+    }
 
     try {
       const mutationResponse = await login({
@@ -75,11 +84,11 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
+      <HeaderSmall />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -127,6 +136,15 @@ export default function SignIn() {
                 sx={{ fontFamily: "Fredoka One", mt: 1 }}
               >
                 Incorrect Username or Password!
+              </Typography>
+            )}
+            {emptyLineError && (
+              <Typography
+                variant="body2"
+                color="secondary"
+                sx={{ fontFamily: "Fredoka One", mt: 1 }}
+              >
+                Please fill out every field!
               </Typography>
             )}
 

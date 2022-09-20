@@ -29,7 +29,7 @@ function Copyright() {
       {"Matthew Keys © "}
       <Link
         color="inherit"
-        href="https://fawlty22.github.io/MatthewKeys-Portfolio"
+        href="https://fawlty22.github.io/MJKPortfolio"
         target="_blank"
         sx={{fontFamily: "Fredoka One"}}
       >
