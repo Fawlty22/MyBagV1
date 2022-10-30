@@ -8,26 +8,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useMutation } from "@apollo/client";
 import { TOGGLEINBAG_MUTATION, REMOVEDISC_MUTATION } from "../graphql/mutations";
+import { ThemeProvider } from "@mui/material/styles";
+import {theme} from '../utils/theme'
 
-const theme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#5EBEC4",
-      light: "#7ECBCF",
-    },
-    secondary: {
-      main: "#F92C85",
-    },
-    background: {
-      default: "#FDF5DF",
-      dark: "#C1C1C1",
-    },
-  },
-});
 
 export default function MyCollection({ userDataState, setUserDataState }) {
 

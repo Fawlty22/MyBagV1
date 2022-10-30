@@ -12,27 +12,11 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
+import {theme} from '../utils/theme'
 import { empty, useMutation } from "@apollo/client";
 import { ADDUSER_MUTATION } from "../graphql/mutations";
 import Auth from "../utils/auth";
-
-const theme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#5EBEC4",
-      light: "#7ECBCF",
-    },
-    secondary: {
-      main: "#F92C85",
-    },
-    background: {
-      default: "#FDF5DF",
-      dark: "#C1C1C1",
-    },
-  },
-});
 
 export default function SignUp() {
   const [state, dispatch] = useStoreContext();
