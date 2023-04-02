@@ -3,25 +3,10 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Auth from "../utils/auth"
+import { ThemeProvider } from "@mui/material/styles";
+import {theme} from '../utils/theme'
 
-const theme = createTheme({
-  palette: {
-    type: "light",
-    primary: {
-      main: "#5EBEC4",
-      light: "#7ECBCF",
-    },
-    secondary: {
-      main: "#F92C85",
-    },
-    background: {
-      default: "#FDF5DF",
-      dark: "#C1C1C1",
-    },
-  },
-});
 
 function Copyright() {
   return (

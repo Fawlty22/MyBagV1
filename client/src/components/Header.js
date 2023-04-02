@@ -5,26 +5,10 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import {theme} from '../utils/theme'
 export default function Header({currentPage, setCurrentPage}) {
   
-    // const theme = createTheme({
-    //     palette: {
-    //       type: "light",
-    //       primary: {
-    //         main: "#5EBEC4",
-    //         light: "#7ECBCF",
-    //       },
-    //       secondary: {
-    //         main: "#F92C85",
-    //       },
-    //       background: {
-    //         default: "#FDF5DF",
-    //         dark: "#C1C1C1",
-    //       },
-    //     },
-    //   });
 
   return (
    <ThemeProvider theme={theme}>

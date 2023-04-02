@@ -13,9 +13,7 @@ import { TOGGLEINBAG_MUTATION, REMOVEDISC_MUTATION } from "../graphql/mutations"
 import { ThemeProvider } from "@mui/material/styles";
 import {theme} from '../utils/theme'
 
-
 export default function MyCollection({ userDataState, setUserDataState }) {
-
   const [toggleInBag, { toggleError, toggleData }] = useMutation(TOGGLEINBAG_MUTATION);
   const [removeDisc, { removeError, removeData }] = useMutation(REMOVEDISC_MUTATION);
 
